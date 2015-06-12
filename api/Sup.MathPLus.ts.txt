@@ -1,0 +1,72 @@
+declare module Sup {
+
+  module MathPlus {
+
+    function toString();
+
+    function integer(value: number): boolean;
+    function PGCD(a: number, b: number): number;
+    function trunc(n: number): number;
+    function PHI();
+    function pyth(a: number, b: number): number;
+
+    function Ec(m: number, v: number): number;
+    function fibonacci(n: number): number;
+    function rad(value: number): number;
+    function deg(value: number): number;
+    function grad(value: number): number;
+
+    function erf(x: number): number;
+    function mix(x: number, y: number, a: number): number;
+    function sng(x: number): number;
+
+    function smoothstep(edge0: number, edge1: number, x: number): number;
+    function smootherstep(edge0: number, edge1: number, x: number): number;
+
+    function reverse(t: number[]): number[];
+    function tobits(value: number): number;
+
+    function acoth(x: number): number;
+    function coth(x: number): number;
+    function sech(x: number): number;
+    function cosech(x: number): number;
+
+    module Equation {
+
+      function delta(a: number, b: number, c:number): number;
+
+    }
+
+    class Vector2 {
+      static right(): Vector2;
+      static left(): Vector2;
+      static up(): Vector2;
+      static down(): Vector2;
+      static one(): Vector2;
+
+      x: number;
+      y: number;
+
+      constructor(x?: number, y?: number);
+      set(x: number, y: number): Vector2;
+      copy(v: Vector2): Vector2;
+      copy(v: {x: number; y: number;}): Vector2;
+      clone(): Vector2;
+
+      add(v: Vector2): Vector2;
+      add(x: number, y: number): Vector2;
+      subtract(v: Vector2): Vector2;
+      subtract(x: number, y: number): Vector2;
+      multiplyScalar(m: number): Vector2;
+      cross(v: Vector2): Vector2;
+      dot(v: Vector2): number;
+      normalize(): Vector2;
+      lerp(v: Vector2, t: number): Vector2;
+      length(): number;
+      distanceTo(v: Vector2): number;
+      angleTo(v: Vector2): number;
+      unproject(camera: Camera): Vector2;
+    }
+  }
+
+}
