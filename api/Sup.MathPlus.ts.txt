@@ -1,0 +1,263 @@
+module Sup {
+
+  var tmpVector2 = new SupEngine.THREE.Vector2();
+
+  export module MathPlus {
+
+    export function integer(value) {
+      if (value==window.Math.floor(value)) {
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+    export function PGCD(a, b) {
+      let x = a;
+      let y = b;
+
+      while (y > 1) {
+        x = y;
+        y =  x % y;
+      }
+
+      return x;
+    }
+
+    export function trunc(n) {
+      if (n < 0) {
+        return window.Math.ceil(n);
+      }
+      else {
+        return window.Math.floor(n);
+      }
+    }
+
+    export function PHI() {
+      return (window.Math.sqrt(5)+1)/2;
+    }
+
+    export function pyth(a, b) {
+      return window.Math.sqrt(window.Math.pow(a, 2)+window.Math.pow(b, 2));
+    }
+
+    export function Ec(m, v) {
+      let Ecin = 1 / 2 * m * window.Math.pow(v, 2);
+      return Ecin;
+    }
+
+    export function fibonacci(n) {
+      let tab:number[] = [];
+      tab[1] = 1;
+      tab[2] = 1;
+
+      for (let i = 0; i < 3; i++){
+        tab[i] = tab[i-1] + tab[i-2];
+      }
+      return tab[n];
+    }
+
+    export function rad(value){
+      return value*window.Math.PI/180;
+    }
+
+    export function deg(value){
+      return value*180/window.Math.PI;
+    }
+
+    export function grad(value) {
+      return value/(10/9);
+    }
+
+    export function erf(x) {
+      if (x !=null) {
+        return 2/window.Math.sqrt(window.Math.PI)*(x-(window.Math.pow(x, 3)/3)+(window.Math.pow(x, 5)/10)-(window.Math.pow(x, 7)/42)+(window.Math.pow(x, 9)));
+      }
+      else {
+        throw new Error("Error x must be a number");
+      }
+    }
+
+    export function mix(x, y, a) {
+      return (x+(y-x)*a);
+    }
+
+    export function sng(x) {
+      if (x > 0) {
+        return 1;
+      }
+      else if (x < 0) {
+        return -1;
+      }
+      else {
+        return 0;
+      }
+    }
+
+    export function smoothstep(edge0, edge1, x) {
+      let clamp = window.Math.max(0 , window.Math.min(1, (x-edge0) / (edge1 - edge0)) );
+      return clamp*clamp*(3-2*clamp);
+    }
+
+    export function smootherstep(edge0, edge1, x) {
+      let clamp = window.Math.max(0 , window.Math.min(1, (x-edge0) / (edge1 - edge0)) );
+      return clamp*clamp*clamp*(clamp*(clamp*6 - 15) + 10);
+    }
+
+    /*export function reverse(t) {
+      let nt:number[] = [];
+      let size = t.length;
+
+      for (i in t) {
+        nt[size - i] = t[i];
+      }
+      return nt;
+    }
+
+    export function tobits(value) {
+      let t = new Array();
+
+      while (value > 0) {
+        let rest = value%2;
+        t[t.length+1] = rest;
+        value = (value-rest)/2;
+      }
+      t = t.reverse();
+      t = t.toString();
+      t = t.join("");
+      t = parseFloat(t);
+      return t;
+    }*/
+
+    export function acoth(x) {
+      return 1/2*window.Math.log((x+1)/(x-1));
+    }
+
+    export function coth(x) {
+      return window.Math.cosh(x)/window.Math.sinh(x);
+    }
+
+    export function sech(x){
+      return 1/window.Math.coth(x);
+    }
+
+    export function cosech(x) {
+      return 1/window.Math.sech(x);
+    }
+
+    export module Equation {
+
+      export function delta(a, b, c) {
+        return window.Math.pow(b, 2)-4*a*c;
+      }
+
+      /*export function secDegres(a, b, c) {
+        let delt = Swindow.Math.pow(b, 2)-4*a*c;
+
+        if (delt == 0) {
+          return (-b)/(2*a);
+        }
+        else if (delt > 0) {
+          let x1 = ((-b) - window.Math.sqrt(delt))/(2*a);
+          let x2 = ((-b) + window.Math.sqrt(delt))/(2*a);
+
+          return x1;
+        }
+        else {
+          return "There is no solution";
+        }
+      }*/
+    }
+
+    export function toString() {
+      console.log("[Sup.MathPlus] plugin correctly installed.")
+    }
+
+    export class Vector2 {
+      static right()   { return new Vector2( 1,  0); }
+      static left()    { return new Vector2(-1,  0); }
+      static up()      { return new Vector2( 0,  1); }
+      static down()    { return new Vector2( 0, -1); }
+      static one()     { return new Vector2( 1,  1); }
+
+      x: number;
+      y: number;
+
+      constructor(x, y) {
+        this.x = (x) ? x : 0;
+        this.y = (y) ? y : 0;
+      }
+
+      set(x, y) { this.x = x; this.y = y; return this; }
+      copy(v) { this.x = v.x; this.y = v.y; return this; }
+      clone() { return new Vector2(this.x, this.y); }
+
+      add(x, y) {
+        if (y == null) {
+          let v = x;
+          this.x += v.x;
+          this.y += v.y;
+        }
+        else {
+          this.x += x;
+          this.y += y;
+        }
+        return this;
+      }
+
+      substract(x, y) {
+        if (y == null) {
+          let v = x;
+          this.x -= v.x;
+          this.y -= v.y;
+        }
+        else {
+          this.x -= x;
+          this.y -= y;
+        }
+        return this;
+      }
+
+      multiplyScalar(m) { this.x *= m; this.y *= m; return this; }
+
+      cross(v) {
+        var x = this.x;
+        var y = this.y;
+
+        this.x = y* v.y;
+        this.y = v.x - x;
+        return this;
+      }
+
+      dot(v) { return this.x * v.x + this.y * v.y; }
+
+      normalize() {
+        var length = this.length()
+        this.x /= length; this.y /= length;
+        return this;
+      }
+
+      lerp(v, t) {
+        this.x = this.x * (1 - t) + v.x * t;
+        this.y = this.y * (1 - t) + v.y * t;
+        return this;
+      }
+
+      length() { return window.Math.sqrt(this.x * this.x + this.y * this.y); }
+      distanceTo(v) { return v.clone().subtract(this).length(); }
+      angleTo(v) {
+        var theta = this.dot( v ) / ( this.length() * v.length() );
+		    return window.Math.acos( Math.clamp( theta, - 1, 1 ) );
+      }
+
+      unproject(camera) {
+        tmpVector2.set(this.x, this.y);
+        tmpVector2.unproject(camera.__inner.threeCamera);
+        this.set(tmpVector2.x, tmpVector2.y);
+        return this;
+     }
+
+    }
+  }
+}
