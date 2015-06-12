@@ -105,31 +105,6 @@ module Sup {
       return clamp*clamp*clamp*(clamp*(clamp*6 - 15) + 10);
     }
 
-    /*export function reverse(t) {
-      let nt:number[] = [];
-      let size = t.length;
-
-      for (i in t) {
-        nt[size - i] = t[i];
-      }
-      return nt;
-    }
-
-    export function tobits(value) {
-      let t = new Array();
-
-      while (value > 0) {
-        let rest = value%2;
-        t[t.length+1] = rest;
-        value = (value-rest)/2;
-      }
-      t = t.reverse();
-      t = t.toString();
-      t = t.join("");
-      t = parseFloat(t);
-      return t;
-    }*/
-
     export function acoth(x) {
       return 1/2*window.Math.log((x+1)/(x-1));
     }
@@ -153,7 +128,7 @@ module Sup {
       }
 
       /*export function secDegres(a, b, c) {
-        let delt = Swindow.Math.pow(b, 2)-4*a*c;
+        let delt = window.Math.pow(b, 2)-4*a*c;
 
         if (delt == 0) {
           return (-b)/(2*a);
